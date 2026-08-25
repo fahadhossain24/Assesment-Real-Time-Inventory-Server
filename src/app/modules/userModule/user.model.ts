@@ -1,8 +1,6 @@
 import mongoose, { Types } from 'mongoose';
 import IUser from './user.interface';
 import validator from 'validator';
-import bcrypt from 'bcrypt';
-import { ENUM_USER_ROLE } from '../../../enums/user';
 
 export const userSchema = new mongoose.Schema<IUser>(
   {
@@ -37,7 +35,7 @@ export const userSchema = new mongoose.Schema<IUser>(
     },
     role: {
       type: String,
-      enum: [ENUM_USER_ROLE.CLIENT, ENUM_USER_ROLE.PROVIDER],
+      // enum: [ENUM_USER_ROLE.CLIENT, ENUM_USER_ROLE.PROVIDER],
       required: true,
     },
     status: {
@@ -100,27 +98,6 @@ export const userSchema = new mongoose.Schema<IUser>(
     timestamps: true,
   },
 );
-
-userSchema.pre('save', function (next) {
-  const saltRounds = 10;
-  if (this.isModified('password')) {
-    this.password = bcrypt.hashSync(this.password, saltRounds);
-  }
-
-  if (this.isModified('verification.code') && this.verification?.code) {
-    this.verification.code = bcrypt.hashSync(this.verification.code, saltRounds);
-  }
-
-  next();
-});
-
-userSchema.methods.comparePassword = function (userPlanePassword: string) {
-  return bcrypt.compareSync(userPlanePassword, this.password);
-};
-
-userSchema.methods.compareVerificationCode = function (userPlaneCode: string) {
-  return bcrypt.compareSync(userPlaneCode, this.verification.code);
-};
 
 userSchema.index({
   firstName: 'text',

@@ -8,17 +8,9 @@ logs/
 
 # Environment files
 .env
-.env.*
 
 # Build output
 dist/
-build/
-
-# Vercel deployment files
-.vercel/
-
-# IDE/editor specific files
-.vscode/
 
 # OS-specific files
 .DS_Store
@@ -32,10 +24,6 @@ yarn-error.log*
 # Docker files (if using Docker)
 .docker/
 docker-compose.override.yml
-
-# Temporary files
-tmp/
-temp/
 
 # Miscellaneous
 uploads/

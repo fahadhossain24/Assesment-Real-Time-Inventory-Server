@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import logger from '../../config/logger';
 
 interface ICustomError extends Error {
   statusCode?: number;
