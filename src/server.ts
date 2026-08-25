@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import sequelize from './config/database';
 import config from './config';
 import app from './app';
 
@@ -11,8 +11,11 @@ process.on('uncaughtException', (error) => {
 });
 
 const startServer = async () => {
-  await mongoose.connect(config.mongodb_url as string);
+  await sequelize.authenticate();
   console.log('\x1b[36mDatabase connection successfull\x1b[0m');
+
+  // await sequelize.sync({ alter: true });
+  // console.log('\x1b[36mDatabase sync successfull\x1b[0m');
 
   server = app.listen(config.server_port || 5001, () => {
     console.log(`\x1b[32mServer is listening on port ${config.server_port || 5001}\x1b[0m`);

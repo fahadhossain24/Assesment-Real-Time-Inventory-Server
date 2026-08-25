@@ -10,7 +10,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['production', 'development', 'test']).default('development'),
   PORT: z.preprocess((val) => Number(val), z.number().default(5003)),
   SERVER_NAME: z.string().min(1, 'Server name is required'),
-  MONGODB_URL: z.string().min(1, 'MongoDB connection URL is required'),
+  DATABASE_URL: z.string().min(1, 'Database connection URL is required'),
 });
 
 const envVars = envSchema.parse(process.env);
@@ -19,5 +19,5 @@ export default {
   node_env: envVars.NODE_ENV,
   server_port: envVars.PORT,
   server_name: envVars.SERVER_NAME,
-  mongodb_url: envVars.MONGODB_URL,
+  database_url: envVars.DATABASE_URL,
 };
