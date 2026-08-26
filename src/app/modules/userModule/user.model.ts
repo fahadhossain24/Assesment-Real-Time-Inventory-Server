@@ -1,110 +1,23 @@
-import mongoose, { Types } from 'mongoose';
-import IUser from './user.interface';
-import validator from 'validator';
+import { DataTypes, Model } from "sequelize";
+import IUser from "./user.interface";
+import sequelize from "../../../config/database";
 
-export const userSchema = new mongoose.Schema<IUser>(
-  {
-    fullName: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      unique: true,
-      required: [true, 'Email is required!'],
-      lowercase: true,
-      trim: true,
-      validate: {
-        validator: (value: string) => validator.isEmail(value),
-        message: (props: { value: string }) => `${props.value} is not a valid email!`,
-      },
-    },
-    phone: {
-      type: String,
-      default: "",
-    },
-    password: {
-      type: String,
-      trim: true,
-      minlength: [8, 'Password must be at least 8 characters'],
-      required: [true, 'Password is required!'],
-    },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
-    },
-    role: {
-      type: String,
-      // enum: [ENUM_USER_ROLE.CLIENT, ENUM_USER_ROLE.PROVIDER],
-      required: true,
-    },
-    status: {
-      type: String,
-      enum: {
-        values: ['active', 'blocked', 'disabled'],
-        message: '{VALUE} is not accepted as a status value. Use active/blocked/disabled.',
-      },
-      default: 'active',
-    },
-    verification: {
-      code: {
-        type: String,
-        default: null,
-      },
-      expireDate: {
-        type: Date,
-        default: null,
-      },
-    },
-    fcmToken: {
-      type: String,
-      default: null,
-    },
-    dob: {
-      type: String,
-      default: "",
-      trim: true
-    },
-    address: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    country: {
-      type: String,
-      default: "",
-    },
-    image: {
-      type: String,
-      default: "",
-    },
-    documents: [{
-      type: String,
-      isVerified: {
-        type: Boolean,
-        default: false,
-      }
-    }],
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
-    currentCredit: {
-      type: Number,
-      default: 0,
-    },
-  },
-  {
-    timestamps: true,
-  },
-);
+class User extends Model<IUser> {
+    declare id: number;
+    declare username: string;
+}
 
-userSchema.index({
-  firstName: 'text',
-  lastName: 'text',
-  email: 'text',
-  phone: 'text',
-})
-
-const User = mongoose.model<IUser>('user', userSchema);
-export default User;
+User.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+}, {
+    sequelize,
+    modelName: 'User'
+});
