@@ -11,6 +11,7 @@ const envSchema = z.object({
   PORT: z.preprocess((val) => Number(val), z.number().default(5003)),
   SERVER_NAME: z.string().min(1, 'Server name is required'),
   DATABASE_URL: z.string().min(1, 'Database connection URL is required'),
+  SERVER_URL: z.string().min(1, 'Server URL is required'),
 });
 
 const envVars = envSchema.parse(process.env);
@@ -20,4 +21,5 @@ export default {
   server_port: envVars.PORT,
   server_name: envVars.SERVER_NAME,
   database_url: envVars.DATABASE_URL,
+  server_url: envVars.SERVER_URL,
 };

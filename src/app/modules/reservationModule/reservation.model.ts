@@ -2,8 +2,6 @@ import { Model, DataTypes } from "sequelize";
 import { IReservation, ReservationCreationAttributes } from "./reservation.interface";
 import sequelize from "../../../config/database";
 import { ENUM_RESERVATION_STATUS } from "../../../enums/reservation";
-import User from "../userModule/user.model";
-import Drop from "../dropModule/drop.model";
 
 class Reservation extends Model<IReservation, ReservationCreationAttributes> implements IReservation {
     declare id: number;
@@ -53,10 +51,9 @@ Reservation.init({
 }, {
     sequelize,
     modelName: 'Reservation',
+    tableName: 'reservations',
     timestamps: true
 });
 
-Reservation.belongsTo(User, {foreignKey: 'userId', as: 'user'});
-Reservation.belongsTo(Drop, {foreignKey: 'dropId', as: 'drop'});
 
 export default Reservation;

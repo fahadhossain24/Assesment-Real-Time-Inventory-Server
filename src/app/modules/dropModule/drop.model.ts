@@ -47,7 +47,9 @@ Drop.init({
 }, {
     sequelize,
     modelName: 'Drop',
+    tableName: 'drops',
     timestamps: true
 });
+
 
 export default Drop;
