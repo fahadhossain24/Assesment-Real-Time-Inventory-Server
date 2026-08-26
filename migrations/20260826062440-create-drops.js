@@ -3,13 +3,33 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('users', { 
+    await queryInterface.createTable('drops', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      username: {
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      price: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false
+      },
+      totalStock: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      availableStock: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      startTime: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      imageUrl: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -23,10 +43,10 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-     });
+    })
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('drops')
   }
 };
