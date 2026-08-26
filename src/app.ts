@@ -10,6 +10,7 @@ import CustomError from './app/errors';
 import rootDesign from './app/middlewares/rootDesign';
 import { compressionOptions } from './config/compression.config';
 import compression from 'compression';
+import { setupAssociations } from './config/association';
 
 const app: Application = express();
 
@@ -21,6 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression(compressionOptions))
 app.use(fileUpload());
 app.use('/v1/uploads', express.static(path.join('uploads')));
+
+// call setup associations function for initialized sequelize models
+setupAssociations();
 
 // application middleware
 app.use('/api', routers);
