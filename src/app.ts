@@ -23,7 +23,7 @@ app.use(fileUpload());
 app.use('/v1/uploads', express.static(path.join('uploads')));
 
 // application middleware
-app.use('/', routers);
+app.use('/api', routers);
 
 // send html design with a button 'click to see server health' and integrate an api to check server health
 app.get('/', rootDesign);
