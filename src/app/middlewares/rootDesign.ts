@@ -118,7 +118,7 @@ const rootDesign = (req: Request, res: Response) => {
     </style>
   </head>
   <body>
-    <h1>🐺 WELCOME to RAZA-HOMEQUOTE SERVER</h1>
+    <h1>🐺 WELCOME to High Traffic Inventory System Server</h1>
     <p class="sub">SYSTEM STATUS MONITOR :: ONLINE</p>
 
     <div class="panel">

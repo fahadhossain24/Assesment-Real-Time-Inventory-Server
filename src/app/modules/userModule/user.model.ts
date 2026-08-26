@@ -1,8 +1,8 @@
 import { DataTypes, Model } from "sequelize";
-import IUser from "./user.interface";
+import { IUser, UserCreationAttributes } from "./user.interface";
 import sequelize from "../../../config/database";
 
-class User extends Model<IUser> {
+class User extends Model<IUser, UserCreationAttributes> implements IUser {
     declare id: number;
     declare username: string;
 }
@@ -21,3 +21,5 @@ User.init({
     sequelize,
     modelName: 'User'
 });
+
+export default User;

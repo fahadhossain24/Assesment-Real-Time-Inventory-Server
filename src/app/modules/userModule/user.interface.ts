@@ -1,7 +1,8 @@
+import { Optional } from "sequelize";
 
-interface IUser  {
+export interface IUser  {
   id: number,
   username: string,
 }
 
-export default IUser;
+export interface UserCreationAttributes extends Optional<IUser, 'id'> {}
