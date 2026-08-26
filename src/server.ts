@@ -1,8 +1,13 @@
+import http from 'http';
 import sequelize from './config/database';
 import config from './config';
 import app from './app';
+import { initSocket } from './socket/socket.configure';
 
-let server: any;
+let server = http.createServer(app);
+
+// Initialize socket.io
+initSocket(server);
 
 // handle uncaught exception error
 process.on('uncaughtException', (error) => {
@@ -17,7 +22,7 @@ const startServer = async () => {
   // await sequelize.sync({ alter: true });
   // console.log('\x1b[36mDatabase sync successfull\x1b[0m');
 
-  server = app.listen(config.server_port || 5001, () => {
+  server.listen(config.server_port || 5001, () => {
     console.log(`\x1b[32mServer is listening on port ${config.server_port || 5001}\x1b[0m`);
   });
 };
