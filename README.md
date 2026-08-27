@@ -90,5 +90,27 @@ The backend exposes real-time Socket.IO events to keep the client UI and activit
 - reservation_expired - Emitted when a reservation expires due to timeout
 - purchase_completed - Emitted when a purchase is successfully completed and the purchasor becomes displayed on UI
 
+### Backend API Endpoints:
+- GET /api/v1/drop/retrieve/all - Get all drops
+- POST /api/v1/reservation/reserve-item - Reserve item
+- POST /api/v1/purchase/purchase-item - Purchase item
+- POST /api/v1/drop/create - Create merch drop
+- POST /api/v1/user/create - Keep user record
+
+### Socket.IO Events:
+- stock_updated
+- reservation_expired
+- purchase_completed
+
+### API Documentation
+
+Full API documentation is available here
+[API Documentation](https://documenter.getpostman.com/view/39205428/2sBYAuQqYu)
+
+### Backend Deployed URL
+
+The backend is deployed and accessible at:
+[Backend Deployed URL](https://assesment-real-time-inventory-server.onrender.com/)
+
 
 
