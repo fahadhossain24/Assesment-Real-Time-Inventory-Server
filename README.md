@@ -91,16 +91,22 @@ The backend exposes real-time Socket.IO events to keep the client UI and activit
 - purchase_completed - Emitted when a purchase is successfully completed and the purchasor becomes displayed on UI
 
 ### Backend API Endpoints:
-- GET /api/v1/drop/retrieve/all - Get all drops
-- POST /api/v1/reservation/reserve-item - Reserve item
-- POST /api/v1/purchase/purchase-item - Purchase item
-- POST /api/v1/drop/create - Create merch drop
-- POST /api/v1/user/create - Keep user record
+Base URL: https://assesment-real-time-inventory-server.onrender.com/api/v1
+- GET /drop/retrieve/all - Get all drops
+- POST /reservation/reserve-item - Reserve item
+- POST /purchase/purchase-item - Purchase item
+- POST /drop/create - Create merch drop
+- POST /user/create - Keep user record
 
 ### Socket.IO Events:
 - stock_updated
 - reservation_expired
 - purchase_completed
+
+### Live URL
+
+The project is lived and accessible at:
+[Live URL](https://sneakers-drop-ui.vercel.app/)
 
 ### API Documentation
 
