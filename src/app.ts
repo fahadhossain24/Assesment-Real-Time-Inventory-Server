@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(compression(compressionOptions))
 app.use(fileUpload());
-app.use('/v1/uploads', express.static(path.join('uploads')));
+app.use('/api/v1/uploads', express.static(path.join('uploads')));
 
 // call setup associations function for initialized sequelize models
 setupAssociations();
