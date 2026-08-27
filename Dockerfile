@@ -9,7 +9,7 @@ COPY package.json yarn.lock ./
 
 # Clean npm cache and install production dependencies
 RUN npm cache clean --force
-RUN yarn install --production --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 # Copy only necessary source files for building
 COPY . .
